@@ -1,5 +1,5 @@
 
-package javaapplication4;
+package Metodo_Newton;
 
 import javax.swing.JOptionPane;
 import jme.Expresion;
@@ -14,8 +14,8 @@ public class Funcion implements InterFuncion{
     private String definicion = "";
     Expresion expresion;
 
-    public Funcion(String definicion) {
-        this.definicion = definicion;        
+    public Funcion(String expresion) {
+        this.definicion = expresion;        
     }                        
     
     @Override
@@ -25,7 +25,7 @@ public class Funcion implements InterFuncion{
             expresion.setVariable("x", x);
             return Double.parseDouble(String.valueOf(expresion.evaluar()));
         } catch (ExpresionException ex) {
-            JOptionPane.showMessageDialog(null, "Error en la función.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en la función principal.", "Error", JOptionPane.ERROR_MESSAGE);
             return Double.NaN; 
         }
     }  

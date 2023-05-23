@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaapplication4;
+package Metodo_Newton;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
