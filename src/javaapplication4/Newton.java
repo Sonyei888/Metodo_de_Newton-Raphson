@@ -50,7 +50,7 @@ public class Newton extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        tvPunto = new javax.swing.JLabel();
+        tvDerivada = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +125,7 @@ public class Newton extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tvPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tvDerivada, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(136, 136, 136))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -183,7 +183,7 @@ public class Newton extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel5)
                         .addGap(27, 27, 27)
-                        .addComponent(tvPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tvDerivada, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,7 +221,7 @@ public class Newton extends javax.swing.JFrame {
        txtEcuacion.setText("");
        txtPuntoInicial.setText("");
        tvResultado.setText("");
-       tvPunto.setText("");
+       tvDerivada.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -233,18 +233,18 @@ public class Newton extends javax.swing.JFrame {
         try {
             InterFuncion der;
             String derivada = Derivar(funcion);
-            Funcion fun2 = new Funcion(derivada);
+            Funcion funcion2 = new Funcion(derivada);
             double iter = 100.0;
-            double ini = Double.parseDouble(txtPuntoInicial.getText());
+            double puntoinicial = Double.parseDouble(txtPuntoInicial.getText());
             double error = 0.0001;
             this.f = fun;
-            der =  fun2;
+            der =  funcion2;
 
-            newtonRaphson(funcion, f, der, ini, error, iter);
-            // newtonRaphson(funcion, ini, iter);
+            MetodonewtonRaphson(funcion, f, der, puntoinicial, error, iter);
+            // MetodonewtonRaphson(funcion, ini, iter);
         } catch (NumberFormatException e) {
-            System.out.println("Error desconocido: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Verifique el número de iteraciones y el punto inicial.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Verifique el número el punto inicial.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -283,7 +283,7 @@ public class Newton extends javax.swing.JFrame {
         });
     }
     
-    public void newtonRaphson(String fun, InterFuncion f, InterFuncion derivada, double x, double tole, double iter) {
+    public void MetodonewtonRaphson(String fun, InterFuncion f, InterFuncion derivada, double x, double tole, double iter) {
 
         double r = Double.NaN;
         double inicial = x;
@@ -301,7 +301,7 @@ public class Newton extends javax.swing.JFrame {
             if (k < iter) {
                 r = x;
                 tvResultado.setText("" + r);
-                tvPunto.setText(Derivar(fun) + "");
+                tvDerivada.setText(Derivar(fun) + "");
                 
                 ArrayList<Double> x1 = new ArrayList();
                 ArrayList<Double> y1 = new ArrayList();
@@ -322,7 +322,8 @@ public class Newton extends javax.swing.JFrame {
         }
     }
     
-    // METODO PARA DERIVAR 
+    // Metodo para derivar la funcion 
+    
     public String Derivar(String funcion) {
 
         try {
@@ -347,22 +348,10 @@ public class Newton extends javax.swing.JFrame {
 
             return djepObject.toString(diff_simplificada);
         } catch (ParseException e) {
-            System.out.println("No se puede derivar");
+            System.out.println("No se puede derivar la funcion");
             return "";
         }
     }
-    
-    //FORMULA PARA REDONDEAR DECIMALES
-    public double redondearDecimales(double valor, int decimales) {
-        double resultado = valor;
-        BigDecimal big = new BigDecimal(resultado);
-        big = big.setScale(decimales, RoundingMode.HALF_UP);
-        resultado = Double.parseDouble(big.toString());
-
-        return resultado;
-    }
-
-    
     //Metodo que determina donde se localiza el punto
     public static boolean LocalizarPunto(String cad) {
         for (int i = cad.length() - 1; i < cad.length(); i++) {
@@ -385,7 +374,7 @@ public class Newton extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton potencia;
-    private javax.swing.JLabel tvPunto;
+    private javax.swing.JLabel tvDerivada;
     private javax.swing.JLabel tvResultado;
     private javax.swing.JTextField txtEcuacion;
     private javax.swing.JTextField txtPuntoInicial;
