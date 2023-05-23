@@ -352,15 +352,7 @@ public class Newton extends javax.swing.JFrame {
             return "";
         }
     }
-    //Metodo que determina donde se localiza el punto
-    public static boolean LocalizarPunto(String cad) {
-        for (int i = cad.length() - 1; i < cad.length(); i++) {
-            if (cad.substring(i, i + 1).equals(".")) {
-                return true;
-            }
-        }
-        return false;
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
