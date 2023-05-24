@@ -302,18 +302,6 @@ public class Newton extends javax.swing.JFrame {
                 r = x;
                 tvResultado.setText("" + r);
                 tvDerivada.setText(Derivar(fun) + "");
-                
-                ArrayList<Double> x1 = new ArrayList();
-                ArrayList<Double> y1 = new ArrayList();
-                int numeroContador = 0;
-                y1.add(graf);
-                for (double i = (inicial - 3); i < (inicial + 2); i += 0.01) {
-                    x1.add(i);
-
-                    //x = y1.get(numeroContador) - f.eval(x) / derivada.eval(x);
-                    y1.add(f.eval(x1.get(numeroContador)));
-                    numeroContador++;
-                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Verifiqué la función o que el punto inicial sea correcto.", "Error", JOptionPane.ERROR_MESSAGE);
